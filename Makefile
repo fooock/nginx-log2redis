@@ -3,6 +3,9 @@ NGINX_BASE_DIR := ./build/nginx
 bootstrap:
 	./bootstrap.sh
 
+clear:
+	./clear.sh
+
 start:
 	$(NGINX_BASE_DIR)/sbin/nginx
 

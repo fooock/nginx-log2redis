@@ -2,7 +2,6 @@
 
 BUILD_DIR=$(pwd)/build
 VENDOR_DIR=$(pwd)/vendor
-LOG_DIR="$BUILD_DIR/$NGINX_DIR/logs"
 
 NGINX_DIR=nginx
 NGINX_VERSION=1.17.1
@@ -39,9 +38,7 @@ function install_nginx() {
     fi
     pushd $VENDOR_DIR/nginx-$NGINX_VERSION
     ./configure --with-debug \
-        --prefix=$BUILD_DIR/$NGINX_DIR \
-        --error-log-path="$LOG_DIR/error.log"
-        --http-log-path="$LOG_DIR/access.log"
+        --prefix=$BUILD_DIR/$NGINX_DIR
     make
     make install
     popd
