@@ -48,6 +48,11 @@ function install_nginx() {
     echo "[+] Finished nginx installation"
 }
 
+function create_config_symlink() {
+    ln -sf "$(pwd)/conf/nginx.conf" "$BUILD_DIR/$NGINX_DIR/conf/nginx.conf"
+}
+
 setup
 download_nginx
 install_nginx
+create_config_symlink
