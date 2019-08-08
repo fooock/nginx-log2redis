@@ -32,14 +32,11 @@ function download_nginx() {
 
 function install_nginx() {
     echo "[+] Prepared to install nginx v$NGINX_VERSION"
-    if [ -d "$BUILD_DIR/$NGINX_DIR/sbin" ]; then
-        echo "[+] Nginx v$NGINX_VERSION is already installed in $BUILD_DIR/$NGINX_DIR"
-        exit 1
-    fi
     pushd $VENDOR_DIR/nginx-$NGINX_VERSION
     ./configure --with-debug \
-        --prefix=$BUILD_DIR/$NGINX_DIR
-    make
+        --prefix=$BUILD_DIR/$NGINX_DIR \
+        --add-module=$(pwd)/../..
+    make -j4
     make install
     popd
     echo "[+] Finished nginx installation"
